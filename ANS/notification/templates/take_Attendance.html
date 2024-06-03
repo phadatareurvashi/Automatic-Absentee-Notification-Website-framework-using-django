@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Portal</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            padding: 20px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Student Attendance Portal</a>
+            <span class="navbar-text">
+                Academic Year:
+                <span id="academicYear">2024</span>
+            </span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Mark Attendance</h1>
+            <button class="btn btn-primary mb-3" onclick="showAddStudentForm()">Add Student</button>
+            <button class="btn btn-primary mb-3" onclick="showAddClassForm()">Add Class</button>
+
+            <div class="form-group">
+                <label for="classSelector">Class:</label>
+                <select id="classSelector" class="form-control" required onchange="showStudentsList()">
+                    <!-- Populate classes dynamically -->
+                </select>
+            </div>
+
+            <ul id="studentsList" class="list-group">
+                <!-- Populate students dynamically based on the selected class -->
+            </ul>
+
+            <div id="summarySection" class="mt-3">
+                <h3>Summary</h3>
+                <p>Total Students: <span id="totalStudents">0</span></p>
+                <p>Total Present: <span id="totalPresent">0</span></p>
+                <p>Total Absent: <span id="totalAbsent">0</span></p>
+                <p>Total Leave: <span id="totalLeave">0</span></p>
+            </div>
+
+            <button class="btn btn-success mt-3" onclick="submitAttendance()">Submit Attendance</button>
+
+            <!-- Result Section -->
+            <div id="resultSection" class="mt-5" style="display: none;">
+                <h3>Attendance Result</h3>
+                <p>Date: <span id="attendanceDate"></span></p>
+                <p>Time: <span id="attendanceTime"></span></p>
+                <p>Class: <span id="attendanceClass"></span></p>
+                <p>Total Students: <span id="attendanceTotalStudents"></span></p>
+                <p>Present: <span id="attendancePresent"></span></p>
+                <p>Absent: <span id="attendanceAbsent"></span></p>
+                <p>Leave: <span id="attendanceLeave"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="addStudentPopup" class="popup">
+        <h2>Add Student</h2>
+        <div class="form-group">
+            <label for="newStudentName">Student Name:</label>
+            <input type="text" id="newStudentName" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="newStudentRoll">Roll Number:</label>
+            <input type="text" id="newStudentRoll" class="form-control" required>
+        </div>
+        <button class="btn btn-primary" onclick="addStudent()">Submit</button>
+        <button class="btn btn-secondary" onclick="closePopup()">Cancel</button>
+    </div>
+
+    <div id="addClassPopup" class="popup">
+        <h2>Add Class</h2>
+        <div class="form-group">
+            <label for="newClassName">Class Name:</label>
+            <input type="text" id="newClassName" class="form-control" required>
+        </div>
+        <button class="btn btn-primary" onclick="addClass()">Submit</button>
+        <button class="btn btn-secondary" onclick="closePopup()">Cancel</button>
+    </div>
+
+    <!-- Bootstrap JS and custom script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
